@@ -8,15 +8,107 @@
 </head>
 <body>
   <script>
-    console.dir(document.body)
-    document.body.createElement("div")
-    document.body.getAttribute("id","root")
-    const root = document.getElementById('id')
-    console.dir('root')
-    function addElement () {
-      
-      document.body.appendChild()
+    //태그 만드는 기능
+    function addElement (parentName, tagName) {
+      const getTag = document.createElement(tagName);
+      parentName.appendChild(getTag);
     }
+
+
+    //태그에 선택자 입력
+    function tagSetAttri (taglocation, selector, innerText){
+      taglocation.setAttribute(selector,innerText);
+    }
+
+
+    //속성값에 내용입력
+    function getTextContent (parentName, childNum, addText){
+      parentName.children[childNum].textContent=addText;
+    }
+
+
+    //const나 let이 들어가면 오류가 발생함... 해결못함 --> 직접 입력으로 대체
+    // function setEleById (selecName, tagSetName){
+    //   const selecName = document.getElementById(tagSetName);
+    // }
+
+
+    //body의 자식들 2개 선택자 입력까지
+    addElement(document.body, "aside",);
+    tagSetAttri(document.body.children[1],"id","move-btn");
+    addElement(document.body,"div");
+    tagSetAttri(document.body.children[2],"id","root");
+
+
+    //선택자 선언
+    const moveBtn = document.getElementById('move-btn');
+    const root = document.getElementById('root');
+
+
+    //h1태그 만들고 내용 입력
+    addElement(moveBtn, "h1");
+    getTextContent(moveBtn,0,"move!");
+
+
+    //root안에 main태그 만들기
+    addElement(root,"main")
+
+
+    //section 2개 만들기 반복문사용 + 섹션 태그 id 넣기
+    const addSection = 2; 
+    for(let i = 0; i<addSection;i++){
+      addElement(root.children[0],"section")
+    }
+    tagSetAttri(root.children[0].children[0], "id","left-sect")
+    tagSetAttri(root.children[0].children[1], "id","right-sect")
+
+
+    //섹션 선택자 선언
+    const leftSect = document.getElementById('left-sect')
+    const rightSect = document.getElementById('right-sect')
+
+
+    //반복문을 이용한 section의 ul태그 넣기
+    for(let i =0; i < root.children[0].children.length; i++){
+      addElement(root.children[0].children[i],"ul")
+    }
+
+
+    //반복문을 이용해 li를 만들고 그 안에 텍스트 넣기
+    const addLi = 5;
+    for(let i=0; i < addLi; i++){
+      addElement(leftSect.children[0],"li")
+      getTextContent(leftSect.children[0],i,"items-"+(i+1))
+    }
+
+    //html 끝
+
+
+
+
+
+
+
+
+
+
+
+    //css 시작
+
+    function resetMPB (parentName, margin, padding, boxSizing) {
+      parentName
+    }
+
+
+    let astric = document.getElementsByTagName("*")
+    for (let i=0;i<astric.length;i++){
+      const astricStyle = astric[i].style;
+      astricStyle.margin=0;
+      astricStyle.padding=0;
+
+    }
+    document.body.style.margin = "10px";
+    console.log(leftSect.children[0].children[0].style)
   </script>
 </body>
 </html>
