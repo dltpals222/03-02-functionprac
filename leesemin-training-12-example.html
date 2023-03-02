@@ -94,21 +94,72 @@
 
 
     //css 시작
+    //width, height, border, backgroundColor를 한곳에 모아둠
+    function addStyleWidHeiBorBack (childName, widthValue, heightValue, borderValue, backgroundColorValue){
+      childName.style.width=widthValue;
+      childName.style.height=heightValue;
+      childName.style.border=borderValue;
+      childName.style.backgroundColor=backgroundColorValue;
+    }
 
-    function resetMPB (parentName, margin, padding, boxSizing) {
-      parentName
+    //flex center 지정
+    function flexCenter (childName){
+      childName.style.display="flex";
+      childName.style.justifyContent="center";
+      childName.style.alignItems="center";
     }
 
 
+
+
+    // reset부분 전체적용
     let astric = document.getElementsByTagName("*")
     for (let i=0;i<astric.length;i++){
       const astricStyle = astric[i].style;
       astricStyle.margin=0;
       astricStyle.padding=0;
-
+      astricStyle.boxSizing="border-box";
     }
-    document.body.style.margin = "10px";
-    console.log(leftSect.children[0].children[0].style)
+
+
+    //body, ul스타일 적용 (개인적으로는 ul만 다른방법 찾아보는 중)
+    document.body.style.overflowX="hidden"
+    for (let i=0; i<root.children[0].children.length;i++){
+      root.children[0].children[i].children[0].style.listStyleType="none";
+    }
+
+
+    //moveBtn 스타일 적용
+    addStyleWidHeiBorBack(moveBtn,"200px","200px","","#fff");
+    moveBtn.style.borderRadius="50%";
+    moveBtn.style.position="fixed";
+    moveBtn.style.bottom="10px";
+    moveBtn.style.left="50vw";
+    moveBtn.style.transform="translate(-50%,0)";
+    flexCenter(moveBtn);
+    
+    
+    //root 스타일 적용
+    addStyleWidHeiBorBack(root, "100vw","100vh","","cadetblue");
+    flexCenter(root);
+    
+    
+    //root > main 의 스타일 적용
+    addStyleWidHeiBorBack(root.children[0],"500px","500px","1px dotted black","");
+    flexCenter(root.children[0]);
+    
+
+    //section 스타일 적용
+    flexCenter(leftSect);
+    addStyleWidHeiBorBack(leftSect,"200px","450px","1px solid black","");
+    flexCenter(rightSect);
+    addStyleWidHeiBorBack(rightSect,"200px","450px","1px solid blue","");
+
+    //li 스타일 적용
+    for(let i=0; i < addLi;i++){
+      addStyleWidHeiBorBack(leftSect.children[0].children[i],"100%","50px","1px solid black","#fff");
+    }
+
   </script>
 </body>
 </html>
