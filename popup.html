@@ -52,8 +52,9 @@
 </head>
 <body>
 
-  <aside id="pop-up">
+  <aside id="pop-up"> 
     <button>close</button>
+    <div>공욱재</div>
   </aside>
 
   <div id="root">
@@ -61,5 +62,24 @@
     <section></section>
     <section></section>
   </div>
+
+  <script>
+    const popUp = document.getElementById('pop-up');
+    const closeButton = popUp.children[0];
+    console.dir(popUp)
+    console.dir(closeButton)
+    console.dir(root.children[0])
+    closeButton.addEventListener("click", function (){
+      // closeButton.style.display = "none";
+      // 부모의 속성을 상속받아서 자식도 없어진다.
+      closeButton.parentElement.style.display="none";
+      root.children[0].innerHTML= "<h1> 공욱재는 강사다 </h1>";
+    })
+    root.children[1].addEventListener("click", function(){
+      closeButton.parentElement.style.display="block";
+      root.children[0].innerHTML="";
+    })
+    
+  </script>
 </body>
 </html>
